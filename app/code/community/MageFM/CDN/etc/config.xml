@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MageFM_CDN>
+            <version>0.1.0</version>
+        </MageFM_CDN>
+    </modules>
+    <global>
+        <helpers>
+            <catalog>
+                <rewrite>
+                    <image>MageFM_CDN_Helper_Image</image>
+                </rewrite>
+            </catalog>
+        </helpers>
+    </global>
+    <adminhtml>
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <magefm_cdn>
+                        <class>MageFM_CDN_Model_Observer</class>
+                        <method>catalogProductSaveAfter</method>
+                    </magefm_cdn>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </adminhtml>
+</config>
