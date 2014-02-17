@@ -5,6 +5,10 @@ class MageFM_CDN_Model_Attribute_Backend_Media extends Mage_Catalog_Model_Produc
 
     protected function _moveImageFromTmp($file)
     {
+        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+            return parent::_moveImageFromTmp($file);
+        }
+
         $ioObject = new Varien_Io_File();
 
         if (strrpos($file, '.tmp') == strlen($file) - 4) {

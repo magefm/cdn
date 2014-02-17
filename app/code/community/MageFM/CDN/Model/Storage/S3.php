@@ -79,7 +79,7 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
 
     protected function getConfig($key)
     {
-        return Mage::getStoreConfig('magefm/cdn/storage/s3/' . $key);
+        return Mage::getStoreConfig('magefm_cdn/storage_s3/' . $key);
     }
 
 }

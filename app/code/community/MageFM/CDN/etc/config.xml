@@ -6,7 +6,20 @@
         </MageFM_CDN>
     </modules>
     <global>
+        <models>
+            <magefm_cdn>
+                <class>MageFM_CDN_Model</class>
+            </magefm_cdn>
+            <catalog>
+                <rewrite>
+                    <product_attribute_backend_media>MageFM_CDN_Model_Attribute_Backend_Media</product_attribute_backend_media>
+                </rewrite>
+            </catalog>
+        </models>
         <helpers>
+            <magefm_cdn>
+                <class>MageFM_CDN_Helper</class>
+            </magefm_cdn>
             <catalog>
                 <rewrite>
                     <image>MageFM_CDN_Helper_Image</image>
@@ -24,6 +37,40 @@
                     </magefm_cdn>
                 </observers>
             </catalog_product_save_after>
+            <controller_action_predispatch_adminhtml_catalog_product_gallery_upload>
+                <observers>
+                    <magefm_cdn>
+                        <class>MageFM_CDN_Model_Observer</class>
+                        <method>adminhtmlCatalogProductGalleryUploadPreDispatch</method>
+                    </magefm_cdn>
+                </observers>
+            </controller_action_predispatch_adminhtml_catalog_product_gallery_upload>
         </events>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <magefm_cdn>
+                                            <title>MageFM CDN</title>
+                                        </magefm_cdn>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
     </adminhtml>
+    <default>
+        <magefm_cdn>
+            <general>
+                <enabled>0</enabled>
+            </general>
+        </magefm_cdn>
+    </default>
 </config>

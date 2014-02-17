@@ -3,12 +3,16 @@
 class MageFM_CDN_Helper_Storage extends Mage_Core_Helper_Abstract
 {
 
-    public function getStorageModel()
+    protected function getStorageModel()
     {
-        /**
-         * @TODO check config and return the correct storage model
-         */
-        return Mage::getModel('magefm_cdn/storage_s3');
+        $storage = Mage::getStoreConfig('magefm_cdn/general/storage');
+
+        switch ($storage) {
+            case 's3':
+                return Mage::getModel('magefm_cdn/storage_' . $storage);
+            default:
+                Mage::throwException('MageFM CDN: Storage is not configured.');
+        }
     }
 
     public function saveFileFromPath($oldName, $newName)
