@@ -12,37 +12,40 @@ class MageFM_CDN_Model_Observer
         try {
             $product = $observer->getEvent()->getProduct();
 
-            foreach ($product->getStoreIds() as $storeId) {
-                Mage::app()->setCurrentStore($storeId);
-                $this->generateProductImages($product);
-                $this->generate($product, 'small_image', 135);
-                $this->generate($product, 'image', 265);
-                $this->generate($product, 'thumbnail', 56);
+            foreach (array('image', 'small_image', 'thumbnail') as $imageType) {
+                $sizes = Mage::getStoreConfig('magefm_cdn/resize/' . $imageType);
+
+                if (empty($sizes)) {
+                    continue;
+                }
+
+                $sizes = explode('|', $sizes);
+
+                foreach ($sizes as $size) {
+                    $this->generateCache($product, $imageType, $size);
+                }
             }
         } catch (Exception $e) {
-            Mage::logException($e);
+            var_dump($e->getMessage(), $e->getTrace());
         }
 
-        Mage::app()->setCurrentStore(0);
+        die(__METHOD__);
     }
 
-    protected function generate(Mage_Catalog_Model_Product $product, $type, $width = null, $height = null)
+    protected function generateCache(Mage_Catalog_Model_Product $product, $type, $rawSize)
     {
-        $model = Mage::getModel('catalog/product_image');
-        $model->setDestinationSubdir($type);
-        $model->setWidth($width);
-        $model->setHeight($height);
-        $model->setBaseFile($product->getData($type));
-        $model->resize();
-        $model->saveFile();
-    }
+        list($width, $height) = explode('x', $rawSize, 2);
 
-    protected function generateProductImages($product)
-    {
+        $width = (empty($width) ? null : $width);
+        $height = (empty($height) ? null : $height);
+
         foreach ($product->getMediaGalleryImages() as $image) {
             $model = Mage::getModel('catalog/product_image');
-            $model->setDestinationSubdir('image');
-            $model->setBaseFile($image->getFile());
+            $model->setDestinationSubdir($type);
+            $model->setWidth($width);
+            $model->setHeight($height);
+            $model->setBaseFile($image['file']);
+            $model->resize();
             $model->saveFile();
         }
     }
