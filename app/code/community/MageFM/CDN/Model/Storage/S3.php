@@ -1,6 +1,6 @@
 <?php
 
-include '/home/www/workspace/magento/lib/aws.phar';
+include 'lib/Aws/autoload.php';
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\AccessDeniedException;
