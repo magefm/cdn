@@ -72,6 +72,11 @@
             <general>
                 <enabled>0</enabled>
             </general>
+            <resize>
+                <image><![CDATA[|]]></image>
+                <small_image><![CDATA[135x]]></small_image>
+                <thumbnail><![CDATA[56x]]></thumbnail>
+            </resize>
         </magefm_cdn>
     </default>
 </config>

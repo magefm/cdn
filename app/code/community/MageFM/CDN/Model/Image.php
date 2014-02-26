@@ -16,7 +16,8 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
         $this->_isBaseFilePlaceholder = false;
 
         $originalUrl = Mage::getSingleton('catalog/product_media_config')->getMediaUrl() . (substr($file, 0, 1) == '/' ? substr($file, 1) : $file);
-        $newFile = tempnam(sys_get_temp_dir(), 'magefm_cdn_');
+        $ext = reset(array_reverse(explode('.', $originalUrl)));
+        $newFile = tempnam(sys_get_temp_dir(), 'magefm_cdn_') . ".{$ext}";
         file_put_contents($newFile, file_get_contents($originalUrl));
         $this->_baseFile = $newFile;
 
@@ -24,7 +25,7 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
         $path = array(
             Mage::getSingleton('catalog/product_media_config')->getBaseMediaUrlAddition(),
             'cache',
-            Mage::app()->getStore()->getId(),
+            1, //Mage::app()->getStore()->getId(),
             $path[] = $this->getDestinationSubdir()
         );
 
@@ -53,8 +54,9 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
 
     public function saveFile()
     {
-        die(__METHOD__);
-        parent::saveFile();
+        $this->getImageProcessor()->save($this->_baseFile);
+        Mage::helper('magefm_cdn/storage')->saveFileFromPath($this->_baseFile, $this->_newFile);
+        return $this;
     }
 
 }

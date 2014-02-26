@@ -12,24 +12,28 @@ class MageFM_CDN_Model_Observer
         try {
             $product = $observer->getEvent()->getProduct();
 
-            foreach (array('image', 'small_image', 'thumbnail') as $imageType) {
-                $sizes = Mage::getStoreConfig('magefm_cdn/resize/' . $imageType);
+            foreach ($product->getStoreIds() as $storeId) {
+                Mage::app()->setCurrentStore($storeId);
 
-                if (empty($sizes)) {
-                    continue;
-                }
+                foreach (array('image', 'small_image', 'thumbnail') as $imageType) {
+                    $sizes = Mage::getStoreConfig('magefm_cdn/resize/' . $imageType, $storeId);
 
-                $sizes = explode('|', $sizes);
+                    if (empty($sizes)) {
+                        continue;
+                    }
 
-                foreach ($sizes as $size) {
-                    $this->generateCache($product, $imageType, $size);
+                    $sizes = explode('|', $sizes);
+
+                    foreach ($sizes as $size) {
+                        $this->generateCache($product, $imageType, $size);
+                    }
                 }
             }
         } catch (Exception $e) {
-            var_dump($e->getMessage(), $e->getTrace());
+            Mage::logException($e);
         }
 
-        die(__METHOD__);
+        Mage::app()->setCurrentStore(0);
     }
 
     protected function generateCache(Mage_Catalog_Model_Product $product, $type, $rawSize)
@@ -80,7 +84,7 @@ class MageFM_CDN_Model_Observer
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
             $result = $uploader->save(
-                Mage::getSingleton('catalog/product_media_config')->getBaseTmpMediaPathAddition()
+                    Mage::getSingleton('catalog/product_media_config')->getBaseTmpMediaPathAddition()
             );
 
             Mage::dispatchEvent('catalog_product_gallery_upload_image_after', array(
@@ -98,7 +102,7 @@ class MageFM_CDN_Model_Observer
             );
         } catch (Exception $e) {
             $result = array(
-                'error' => get_class($e) . $e->getMessage(),
+                'error' => get_class($e) . ':' . $e->getMessage(),
                 'errorcode' => $e->getCode()
             );
         }
