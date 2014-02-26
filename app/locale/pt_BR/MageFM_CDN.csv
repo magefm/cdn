@@ -1,0 +1,4 @@
+"CDN","CDN"
+"Storage","Serviço de armazenamento"
+"Generate resized images","Gerar imagens redimensionadas"
+"Use ""|"" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50","Use ""|"" para separar múltiplas medidas. Para manter a proporção, deixe a largura ou altura em branco, ex: 135x<br />Exemplo: 135x|260x260|x50"

@@ -66,6 +66,15 @@
                 </admin>
             </resources>
         </acl>
+        <translate>
+            <modules>
+                <MageFM_CDN>
+                    <files>
+                        <default>MageFM_CDN.csv</default>
+                    </files>
+                </MageFM_CDN>
+            </modules>
+        </translate>
     </adminhtml>
     <default>
         <magefm_cdn>

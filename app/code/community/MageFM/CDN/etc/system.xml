@@ -8,7 +8,7 @@
     </tabs>
     <sections>
         <magefm_cdn translate="label" module="magefm_cdn">
-            <label>MageFM CDN</label>
+            <label>CDN</label>
             <tab>magefm</tab>
             <frontend_type>text</frontend_type>
             <sort_order>1</sort_order>
@@ -39,7 +39,7 @@
                     </fields>
                 </general>
                 <resize translate="label">
-                    <label>Generated resized images</label>
+                    <label>Generate resized images</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
@@ -49,21 +49,21 @@
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
-                            <comment>Format: 135x|260x260|x50</comment>
+                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
                         </image>
                         <small_image translate="label comment">
                             <label>Small image</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
-                            <comment>Format: 135x|260x260|x50</comment>
+                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
                         </small_image>
-                        <thumbnail translate="label">
+                        <thumbnail translate="label comment">
                             <label>Thumbnail</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
-                            <comment>Format: 135x|260x260|x50</comment>
+                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
                         </thumbnail>
                     </fields>
                 </resize>

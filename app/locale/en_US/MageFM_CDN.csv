@@ -1,0 +1,4 @@
+"CDN","CDN"
+"Storage","Storage"
+"Generate resized images","Generate resized images"
+"Use ""|"" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50","Use ""|"" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50"
