@@ -8,12 +8,9 @@ class MageFM_CDN_Helper_Core extends Mage_Core_Helper_Data
         $targetPath = '/' . $targetFile;
 
         try {
-            /**
-             * @TODO cache the S3 response here
-             */
-            $storage = Mage::helper('magefm_cdn/storage');
+            $cacheKey = 'magefm_cdn|' . $targetFile;
 
-            if ($storage->fileExists($targetPath)) {
+            if (Mage::app()->getCache()->load($cacheKey)) {
                 return true;
             }
 
@@ -58,7 +55,13 @@ class MageFM_CDN_Helper_Core extends Mage_Core_Helper_Data
                 throw new Exception(sprintf("No content found in files:\n%s", implode("\n", $srcFiles)));
             }
 
+            $storage = Mage::helper('magefm_cdn/storage');
             $storage->saveFileFromContent($targetPath, $data, $mimeType);
+            /**
+             * @TODO you have to remove var/cache to empty this. Need fix.
+             */
+            Mage::app()->getCache()->save('1', $cacheKey);
+
             return true;
         } catch (Exception $e) {
             die($e->getMessage());
