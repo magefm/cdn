@@ -8,7 +8,7 @@ use Aws\S3\Exception\AccessDeniedException;
 class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInterface
 {
 
-    public function saveContent($path, $content)
+    public function saveContent($path, $content, $mimeType = null)
     {
         try {
             $s3 = $this->getClient();
@@ -18,6 +18,7 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
                 'Key' => $path,
                 'Body' => $content,
                 'ACL' => 'public-read',
+                'ContentType' => $mimeType,
             ));
 
             return array(

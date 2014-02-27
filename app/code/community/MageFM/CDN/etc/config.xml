@@ -16,6 +16,11 @@
                     <product_image>MageFM_CDN_Model_Image</product_image>
                 </rewrite>
             </catalog>
+            <core>
+                <rewrite>
+                    <design_package>MageFM_CDN_Model_Design_Package</design_package>
+                </rewrite>
+            </core>
         </models>
         <helpers>
             <magefm_cdn>
@@ -26,6 +31,11 @@
                     <image>MageFM_CDN_Helper_Image</image>
                 </rewrite>
             </catalog>
+            <core>
+                <rewrite>
+                    <data>MageFM_CDN_Helper_Core</data>
+                </rewrite>
+            </core>
         </helpers>
     </global>
     <adminhtml>
