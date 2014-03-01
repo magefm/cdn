@@ -8,10 +8,14 @@ use Aws\S3\Exception\AccessDeniedException;
 class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInterface
 {
 
-    public function saveContent($path, $content, $mimeType = null)
+    public function saveContent($path, $content, $mimeType = null, $compress = false)
     {
         try {
             $s3 = $this->getClient();
+
+            if ($compress == true) {
+                $content = gzcompress($content, 9);
+            }
 
             $result = $s3->putObject(array(
                 'Bucket' => $this->getConfig('bucket'),
@@ -19,6 +23,7 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
                 'Body' => $content,
                 'ACL' => 'public-read',
                 'ContentType' => $mimeType,
+                'ContentEncoding' => ($compress ? 'deflate' : null),
             ));
 
             return array(
@@ -73,8 +78,8 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
     protected function getClient()
     {
         return S3Client::factory(array(
-                'key' => $this->getConfig('key'),
-                'secret' => $this->getConfig('secret'),
+                    'key' => $this->getConfig('key'),
+                    'secret' => $this->getConfig('secret'),
         ));
     }
 

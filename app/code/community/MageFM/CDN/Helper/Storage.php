@@ -20,9 +20,9 @@ class MageFM_CDN_Helper_Storage extends Mage_Core_Helper_Abstract
         return $this->getStorageModel()->saveContent($newName, file_get_contents($oldName));
     }
 
-    public function saveFileFromContent($path, $content, $mimeType = null)
+    public function saveFileFromContent($path, $content, $mimeType = null, $compress = false)
     {
-        return $this->getStorageModel()->saveContent($path, $content, $mimeType);
+        return $this->getStorageModel()->saveContent($path, $content, $mimeType, $compress);
     }
 
     public function renameFile($oldPath, $newPath)
