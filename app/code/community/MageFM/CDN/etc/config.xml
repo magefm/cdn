@@ -21,6 +21,11 @@
                     <design_package>MageFM_CDN_Model_Design_Package</design_package>
                 </rewrite>
             </core>
+            <adminhtml>
+                <rewrite>
+                    <system_config_backend_image_favicon>MageFM_CDN_Model_System_Config_Backend_Image_Favicon</system_config_backend_image_favicon>
+                </rewrite>
+            </adminhtml>
         </models>
         <helpers>
             <magefm_cdn>
