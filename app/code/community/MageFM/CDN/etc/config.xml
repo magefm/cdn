@@ -23,7 +23,10 @@
             </core>
             <adminhtml>
                 <rewrite>
+                    <system_config_backend_email_logo>MageFM_CDN_Model_System_Config_Backend_Email_Logo</system_config_backend_email_logo>
+                    <system_config_backend_image>MageFM_CDN_Model_System_Config_Backend_Image</system_config_backend_image>
                     <system_config_backend_image_favicon>MageFM_CDN_Model_System_Config_Backend_Image_Favicon</system_config_backend_image_favicon>
+                    <system_config_backend_image_pdf>MageFM_CDN_Model_System_Config_Backend_Image_Pdf</system_config_backend_image_pdf>
                 </rewrite>
             </adminhtml>
         </models>

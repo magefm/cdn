@@ -1,6 +1,6 @@
 <?php
 
-class MageFM_CDN_Model_System_Config_Backend_Image_Favicon extends Mage_Adminhtml_Model_System_Config_Backend_Image_Favicon
+class MageFM_CDN_Model_System_Config_Backend_Image_Pdf extends Mage_Adminhtml_Model_System_Config_Backend_Image_Pdf
 {
 
     protected function _getUploadDir()
