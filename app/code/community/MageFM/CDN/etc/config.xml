@@ -12,6 +12,7 @@
             </magefm_cdn>
             <catalog>
                 <rewrite>
+                    <category_attribute_backend_image>MageFM_CDN_Model_Category_Attribute_Backend_Image</category_attribute_backend_image>
                     <product_attribute_backend_media>MageFM_CDN_Model_Attribute_Backend_Media</product_attribute_backend_media>
                     <product_image>MageFM_CDN_Model_Image</product_image>
                 </rewrite>
