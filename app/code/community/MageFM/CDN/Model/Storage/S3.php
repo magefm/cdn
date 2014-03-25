@@ -4,6 +4,7 @@ include 'lib/Aws/autoload.php';
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\AccessDeniedException;
+use Aws\S3\Exception\NoSuchKeyException;
 
 class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInterface
 {
@@ -48,6 +49,8 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
 
             return true;
         } catch (AccessDeniedException $e) {
+            return false;
+        } catch (NoSuchKeyException $e) {
             return false;
         }
     }

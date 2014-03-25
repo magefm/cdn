@@ -20,7 +20,7 @@ class MageFM_CDN_Model_Category_Attribute_Backend_Image extends Mage_Eav_Model_E
             return;
         }
 
-        $path = 'catalog' . DS . 'category' . DS;
+        $path = 'catalog' . DS . 'category';
 
         try {
             $uploader = new MageFM_CDN_Model_Uploader($this->getAttribute()->getName());
