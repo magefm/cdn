@@ -78,6 +78,24 @@ class MageFM_CDN_Model_Storage_S3 implements MageFM_CDN_Model_Storage_StorageInt
         }
     }
 
+    public function delete($path)
+    {
+        try {
+            $s3 = $this->getClient();
+
+            $s3->deleteObject(array(
+                'Bucket' => $this->getConfig('bucket'),
+                'Key' => $path,
+            ));
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
+
     protected function getClient()
     {
         return S3Client::factory(array(
