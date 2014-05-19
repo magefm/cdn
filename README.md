@@ -26,7 +26,7 @@ Installation
 Configuring IAM
 ---------------
 
-Is recommended to create a specific IAM userfor handling files on S3. To avoid permission problems, use the following policy:
+It is recommended to create a specific IAM userfor handling files on S3. To avoid permission problems, use the following policy:
 
 ```
 {
