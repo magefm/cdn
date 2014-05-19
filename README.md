@@ -21,7 +21,7 @@ Installation
 1. Copy all files to the Magento directory;
 2. Clean your cache;
 3. Configure your Amazon S3 credentials at System > Configuration > MageFM > CDN;
-4. Configure your Base Media URL at System > Configuration > Generatel > Web;
+4. Configure your Base Media URL at System > Configuration > General > Web;
 
 Configuring IAM
 ---------------
