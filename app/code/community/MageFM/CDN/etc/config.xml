@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MageFM_CDN>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </MageFM_CDN>
     </modules>
     <global>
