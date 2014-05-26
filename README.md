@@ -40,9 +40,11 @@ It is recommended to create a specific IAM userfor handling files on S3. To avoi
         "s3:GetObject",
         "s3:GetObjectAcl",
         "s3:PutObject",
-        "s3:PutObjectAcl"
+        "s3:PutObjectAcl",
+        "s3:ListBucket"
       ],
       "Resource": [
+        "arn:aws:s3:::bucket-name",
         "arn:aws:s3:::bucket-name/*"
       ]
     }

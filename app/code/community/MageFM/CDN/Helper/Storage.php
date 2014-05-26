@@ -40,4 +40,9 @@ class MageFM_CDN_Helper_Storage extends Mage_Core_Helper_Abstract
         return $this->getStorageModel()->delete($path);
     }
 
+    public function deleteFolder($path)
+    {
+        return $this->getStorageModel()->deleteFolder($path);
+    }
+
 }
