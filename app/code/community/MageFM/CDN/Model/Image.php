@@ -59,4 +59,9 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
         return $this;
     }
 
+    public function clearCache()
+    {
+        Mage::throwException('You cannot clear this cache because new images will not be automatically generated.');
+    }
+
 }
