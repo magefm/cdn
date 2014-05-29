@@ -57,10 +57,8 @@ class MageFM_CDN_Helper_Core extends Mage_Core_Helper_Data
 
             $storage = Mage::helper('magefm_cdn/storage');
             $storage->saveFileFromContent($targetPath, $data, $mimeType, true);
-            /**
-             * @TODO you have to remove var/cache to empty this. Need fix.
-             */
-            Mage::app()->getCache()->save('1', $cacheKey);
+
+            Mage::app()->getCache()->save('1', $cacheKey, array('magefm_cdn'));
 
             return true;
         } catch (Exception $e) {

@@ -42,7 +42,10 @@ class MageFM_CDN_Model_Design_Package extends Mage_Core_Model_Design_Package
 
     public function cleanMergedJsCss()
     {
-        Mage::throwException('You cannot clear this cache because new images will not be automatically generated.');
+        Mage::app()->getCache()->clean('matchingTag', array('magefm_cdn'));
+        Mage::helper('magefm_cdn/storage')->deleteFolder('css');
+        Mage::helper('magefm_cdn/storage')->deleteFolder('css_secure');
+        Mage::helper('magefm_cdn/storage')->deleteFolder('js');
     }
 
     protected function _mergeFiles(array $srcFiles, $targetFile = false, $mustMerge = false, $beforeMergeCallback = null, $extensionsFilter = array(), $mimeType = null)
