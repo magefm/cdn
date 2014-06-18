@@ -45,13 +45,17 @@ class MageFM_CDN_Model_Uploader extends Mage_Core_Model_File_Uploader
         return $this->_result;
     }
 
-    public static function getNewFileName($path, $file)
+    public static function getNewFileName($destFile, $file = null)
     {
         if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
             return parent::getNewFileName($destFile);
         }
 
-        if (!Mage::helper('magefm_cdn/storage')->fileExists($path . '/' . $file)) {
+        if (is_null($file)) {
+            Mage::throwException('Can\'t convert filename.');
+        }
+
+        if (!Mage::helper('magefm_cdn/storage')->fileExists($destFile . '/' . $file)) {
             return $file;
         }
 
@@ -68,7 +72,7 @@ class MageFM_CDN_Model_Uploader extends Mage_Core_Model_File_Uploader
         do {
             $i++;
             $fileName = "{$name}_{$i}" . (is_null($ext) ? '' : '.' . $ext);
-        } while (Mage::helper('magefm_cdn/storage')->fileExists($path . '/' . $fileName));
+        } while (Mage::helper('magefm_cdn/storage')->fileExists($destFile . '/' . $fileName));
 
         return $fileName;
     }

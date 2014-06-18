@@ -12,10 +12,10 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
         if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
             return parent::setBaseFile($file);
         }
-
+        
         $this->_isBaseFilePlaceholder = false;
-
-        $originalUrl = Mage::getSingleton('catalog/product_media_config')->getMediaUrl() . (substr($file, 0, 1) == '/' ? substr($file, 1) : $file);
+        
+        $originalUrl = Mage::getSingleton('catalog/product_media_config')->getMediaUrl(substr($file, 0, 1) == '/' ? substr($file, 1) : $file);
         $ext = reset(array_reverse(explode('.', $originalUrl)));
         $newFile = tempnam(sys_get_temp_dir(), 'magefm_cdn_') . ".{$ext}";
         file_put_contents($newFile, file_get_contents($originalUrl));
