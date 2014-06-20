@@ -16,7 +16,8 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
         $this->_isBaseFilePlaceholder = false;
         
         $originalUrl = Mage::getSingleton('catalog/product_media_config')->getMediaUrl(substr($file, 0, 1) == '/' ? substr($file, 1) : $file);
-        $ext = reset(array_reverse(explode('.', $originalUrl)));
+        $tmpExt = explode('.', $originalUrl);
+        $ext = array_pop($tmpExt);
         $newFile = tempnam(sys_get_temp_dir(), 'magefm_cdn_') . ".{$ext}";
         file_put_contents($newFile, file_get_contents($originalUrl));
         $this->_baseFile = $newFile;
