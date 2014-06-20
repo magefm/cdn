@@ -32,9 +32,12 @@ class MageFM_CDN_Helper_Image extends Mage_Catalog_Helper_Image
             Mage::app()->getStore()->getId(),
             $model->getDestinationSubdir(),
         );
+        
+        $width = $model->getWidth();
+        $height = $model->getHeight();
 
-        if ((!empty($model->getWidth())) || (!empty($model->getHeight()))) {
-            $url[] = "{$model->getWidth()}x{$model->getHeight()}";
+        if ((!empty($width)) || (!empty($height))) {
+            $url[] = "{$width}x{$height}";
         }
 
         /** @TODO use $miscParams from model */
