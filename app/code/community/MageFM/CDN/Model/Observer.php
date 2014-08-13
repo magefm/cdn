@@ -56,8 +56,6 @@ class MageFM_CDN_Model_Observer
             );
         }
 
-        Mage::log(print_r($result, true), null, 'uploader.log', true);
-
         $controller->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
     }
 

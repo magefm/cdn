@@ -97,8 +97,6 @@ class MageFM_CDN_Model_Image extends Mage_Catalog_Model_Product_Image
             $entity->setStoreId(Mage::app()->getStore()->getId());
             $entity->setPath($this->_newFile);
             $entity->save();
-        } else {
-            Mage::log($this->_newFile, null, 'magefm_cdn_iscached.log', true);
         }
 
         return $result;
