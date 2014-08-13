@@ -1,6 +1,6 @@
 <?php
 
-include 'lib/Aws/autoload.php';
+Mage::getModel('magefm_cdn/autoloader')->registerAutoloader();
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\AccessDeniedException;
