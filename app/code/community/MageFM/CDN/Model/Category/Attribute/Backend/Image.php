@@ -1,6 +1,6 @@
 <?php
 
-class MageFM_CDN_Model_Category_Attribute_Backend_Image extends Mage_Eav_Model_Entity_Attribute_Backend_Abstract
+class MageFM_CDN_Model_Category_Attribute_Backend_Image extends Mage_Catalog_Model_Category_Attribute_Backend_Image
 {
 
     /**
@@ -12,6 +12,10 @@ class MageFM_CDN_Model_Category_Attribute_Backend_Image extends Mage_Eav_Model_E
      */
     public function afterSave($object)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::afterSave($object);
+        }
+
         $value = $object->getData($this->getAttribute()->getName());
 
         if (is_array($value) && !empty($value['delete'])) {

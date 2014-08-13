@@ -5,6 +5,10 @@ class MageFM_CDN_Model_Design_Package extends Mage_Core_Model_Design_Package
 
     public function getMergedJsUrl($files)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::getMergedJsUrl($files);
+        }
+
         $targetFilename = 'js/' . md5(implode(',', $files)) . '.js';
 
         if ($this->_mergeFiles($files, $targetFilename, false, null, 'js', 'text/javascript')) {
@@ -16,6 +20,10 @@ class MageFM_CDN_Model_Design_Package extends Mage_Core_Model_Design_Package
 
     public function getMergedCssUrl($files)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::getMergedCssUrl($files);
+        }
+
         // secure or unsecure
         $isSecure = Mage::app()->getRequest()->isSecure();
         $mergerDir = $isSecure ? 'css_secure' : 'css';
@@ -42,6 +50,10 @@ class MageFM_CDN_Model_Design_Package extends Mage_Core_Model_Design_Package
 
     public function cleanMergedJsCss()
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::cleanMergedJsCss();
+        }
+
         Mage::app()->getCache()->clean('matchingTag', array('magefm_cdn'));
         Mage::helper('magefm_cdn/storage')->deleteFolder('css');
         Mage::helper('magefm_cdn/storage')->deleteFolder('css_secure');
@@ -50,6 +62,10 @@ class MageFM_CDN_Model_Design_Package extends Mage_Core_Model_Design_Package
 
     protected function _mergeFiles(array $srcFiles, $targetFile = false, $mustMerge = false, $beforeMergeCallback = null, $extensionsFilter = array(), $mimeType = null)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::_mergeFiles($srcFiles, $targetFile, $mustMerge, $beforeMergeCallback, $extensionsFilter);
+        }
+
         return Mage::helper('core')->mergeFiles($srcFiles, $targetFile, $mustMerge, $beforeMergeCallback, $extensionsFilter, $mimeType);
     }
 

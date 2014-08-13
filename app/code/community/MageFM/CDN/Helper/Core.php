@@ -5,6 +5,10 @@ class MageFM_CDN_Helper_Core extends Mage_Core_Helper_Data
 
     public function mergeFiles(array $srcFiles, $targetFile = false, $mustMerge = false, $beforeMergeCallback = null, $extensionsFilter = array(), $mimeType = null)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::mergeFiles($srcFiles, $targetFile, $mustMerge, $beforeMergeCallback, $extensionsFilter);
+        }
+
         $targetPath = '/' . $targetFile;
 
         try {

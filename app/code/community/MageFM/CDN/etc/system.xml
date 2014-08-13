@@ -38,35 +38,6 @@
                         </storage>
                     </fields>
                 </general>
-                <resize translate="label">
-                    <label>Generate resized images</label>
-                    <frontend_type>text</frontend_type>
-                    <sort_order>1</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <fields>
-                        <image translate="label comment">
-                            <label>Base image</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
-                        </image>
-                        <small_image translate="label comment">
-                            <label>Small image</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>2</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
-                        </small_image>
-                        <thumbnail translate="label comment">
-                            <label>Thumbnail</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>3</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <comment><![CDATA[Use "|" to separate multiple sizes. To keep aspect ratio of the original image, left width or height blank, i.e. 135x<br />Example: 135x|260x260|x50]]></comment>
-                        </thumbnail>
-                    </fields>
-                </resize>
                 <storage_s3 translate="label">
                     <label>Amazon Simple Storage Service</label>
                     <frontend_type>text</frontend_type>

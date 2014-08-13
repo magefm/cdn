@@ -2,14 +2,23 @@
 <config>
     <modules>
         <MageFM_CDN>
-            <version>0.1.1</version>
+            <version>0.2.0</version>
         </MageFM_CDN>
     </modules>
     <global>
         <models>
             <magefm_cdn>
                 <class>MageFM_CDN_Model</class>
+                <resourceModel>magefm_cdn_resource</resourceModel>
             </magefm_cdn>
+            <magefm_cdn_resource>
+                <class>MageFM_CDN_Model_Resource</class>
+                <entities>
+                    <cache>
+                        <table>magefm_cdn_cache</table>
+                    </cache>
+                </entities>
+            </magefm_cdn_resource>
             <catalog>
                 <rewrite>
                     <category_attribute_backend_image>MageFM_CDN_Model_Category_Attribute_Backend_Image</category_attribute_backend_image>
@@ -46,17 +55,16 @@
                 </rewrite>
             </core>
         </helpers>
+        <resources>
+            <magefm_cdn_setup>
+                <setup>
+                    <module>MageFM_CDN</module>
+                </setup>
+            </magefm_cdn_setup>
+        </resources>
     </global>
     <adminhtml>
         <events>
-            <catalog_product_save_after>
-                <observers>
-                    <magefm_cdn>
-                        <class>MageFM_CDN_Model_Observer</class>
-                        <method>catalogProductSaveAfter</method>
-                    </magefm_cdn>
-                </observers>
-            </catalog_product_save_after>
             <controller_action_predispatch_adminhtml_catalog_product_gallery_upload>
                 <observers>
                     <magefm_cdn>
@@ -100,11 +108,6 @@
             <general>
                 <enabled>0</enabled>
             </general>
-            <resize>
-                <image><![CDATA[|]]></image>
-                <small_image><![CDATA[135x]]></small_image>
-                <thumbnail><![CDATA[56x]]></thumbnail>
-            </resize>
         </magefm_cdn>
     </default>
 </config>

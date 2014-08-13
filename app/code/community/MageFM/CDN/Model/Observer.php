@@ -3,57 +3,6 @@
 class MageFM_CDN_Model_Observer
 {
 
-    public function catalogProductSaveAfter(Varien_Event_Observer $observer)
-    {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
-            return;
-        }
-
-        try {
-            $product = $observer->getEvent()->getProduct();
-
-            foreach ($product->getStoreIds() as $storeId) {
-                Mage::app()->setCurrentStore($storeId);
-
-                foreach (array('image', 'small_image', 'thumbnail') as $imageType) {
-                    $sizes = Mage::getStoreConfig('magefm_cdn/resize/' . $imageType, $storeId);
-
-                    if (empty($sizes)) {
-                        continue;
-                    }
-
-                    $sizes = explode('|', $sizes);
-
-                    foreach ($sizes as $size) {
-                        $this->generateCache($product, $imageType, $size);
-                    }
-                }
-            }
-        } catch (Exception $e) {
-            Mage::logException($e);
-        }
-
-        Mage::app()->setCurrentStore(0);
-    }
-
-    protected function generateCache(Mage_Catalog_Model_Product $product, $type, $rawSize)
-    {
-        list($width, $height) = explode('x', $rawSize, 2);
-
-        $width = (empty($width) ? null : $width);
-        $height = (empty($height) ? null : $height);
-
-        foreach ($product->getMediaGalleryImages() as $image) {
-            $model = Mage::getModel('catalog/product_image');
-            $model->setDestinationSubdir($type);
-            $model->setWidth($width);
-            $model->setHeight($height);
-            $model->setBaseFile($image['file']);
-            $model->resize();
-            $model->saveFile();
-        }
-    }
-
     public function adminhtmlCatalogProductGalleryUploadPreDispatch(Varien_Event_Observer $observer)
     {
         if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {

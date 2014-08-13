@@ -5,7 +5,7 @@ class MageFM_CDN_Model_Attribute_Backend_Media extends Mage_Catalog_Model_Produc
 
     protected function _moveImageFromTmp($file)
     {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
             return parent::_moveImageFromTmp($file);
         }
 
@@ -30,6 +30,10 @@ class MageFM_CDN_Model_Attribute_Backend_Media extends Mage_Catalog_Model_Produc
 
     protected function _getUniqueFileName($path, $file)
     {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
+            return parent::_moveImageFromTmp($path, $file);
+        }
+
         return MageFM_CDN_Model_Uploader::getNewFileName($path, $file);
     }
 
