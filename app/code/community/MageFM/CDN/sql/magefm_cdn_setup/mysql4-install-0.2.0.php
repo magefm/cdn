@@ -11,7 +11,7 @@ CREATE TABLE `{$this->getTable('magefm_cdn/cache')}` (
     created_at timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB ;
 
-CREATE TABLE `magefm_cdn_cache_idx1`
+CREATE INDEX `magefm_cdn_cache_idx1`
     ON `{$this->getTable('magefm_cdn/cache')}` (store_id, path(512));
 
 ");
