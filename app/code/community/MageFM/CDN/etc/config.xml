@@ -29,6 +29,7 @@
             <core>
                 <rewrite>
                     <design_package>MageFM_CDN_Model_Design_Package</design_package>
+                    <file_uploader>MageFM_CDN_Model_Uploader</file_uploader>
                 </rewrite>
             </core>
             <adminhtml>
