@@ -5,7 +5,7 @@ class MageFM_CDN_Model_Observer
 
     public function adminhtmlCatalogProductGalleryUploadPreDispatch(Varien_Event_Observer $observer)
     {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
             return;
         }
 

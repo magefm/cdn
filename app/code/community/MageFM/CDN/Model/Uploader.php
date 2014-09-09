@@ -5,7 +5,7 @@ class MageFM_CDN_Model_Uploader extends Mage_Core_Model_File_Uploader
 
     public function save($destinationFolder, $newFileName = null)
     {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
             return parent::save($destinationFolder, $newFileName);
         }
 
@@ -47,7 +47,7 @@ class MageFM_CDN_Model_Uploader extends Mage_Core_Model_File_Uploader
 
     public static function getNewFileName($destFile, $file = null)
     {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
             return parent::getNewFileName($destFile);
         }
 
@@ -79,7 +79,7 @@ class MageFM_CDN_Model_Uploader extends Mage_Core_Model_File_Uploader
 
     protected function _moveFile($tmpPath, $destPath)
     {
-        if (!Mage::getStoreConfigFlag('magefm_cdn/general/enabled')) {
+        if (!Mage::helper('magefm_cdn')->isEnabled()) {
             return parent::_moveFile($tmpPath, $destPath);
         }
 
